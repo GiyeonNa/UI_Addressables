@@ -106,4 +106,9 @@ public class UI_Test1 : UIPopup
 
 수정해야할 사항 : 현재는 주석쳐진 SetIcon에서 SpritePool에서 이미지를 뽑아오는 기능을 Addresalbe로 변환해야한다.
 
-다음 사항 : 커스텀 UI 기능툴 만들어보기, 젠킨스 자동빌드 만들어보기
+다음 사항 : 커스텀 UI 기능툴 만들어보기,  
+참고 : https://dev-junwoo.tistory.com/147#comment20184515  
+참고 : https://blog.treeplla.com/%ED%95%9C-%EB%8B%AC-%EC%95%88%EC%97%90-%EA%B2%8C%EC%9E%84-%EB%A7%8C%EB%93%A4%EA%B8%B0%EA%B0%80-%EA%B0%80%EB%8A%A5%ED%96%88%EB%8D%98-%EC%9D%B4%EC%9C%A0-672a20524fed  
+
+다음 사항 :  젠킨스 자동빌드 만들어보기  
+참고 : https://dev-junwoo.tistory.com/155  
