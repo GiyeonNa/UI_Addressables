@@ -89,8 +89,7 @@ public class AddressableUIManager : MonoSingleton<AddressableUIManager>
     {
         if (uiInstances.TryGetValue(uiKey, out GameObject uiInstance) && uiInstance != null)
         {
-            // Reparent to manager and deactivate
-            uiInstance.transform.SetParent(this.transform, false);
+            //uiInstance.transform.SetParent(this.transform, false);
             uiInstance.GetComponent<UIPopup>()?.Close();
             uiInstance.SetActive(false);
         }
