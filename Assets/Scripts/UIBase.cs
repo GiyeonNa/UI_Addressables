@@ -159,25 +159,25 @@ public class UIBase : MonoBehaviour
 
     #region Image
     //이미지 설정, 기존에 아틀라스 이미지 경로를 참고하는 로직
-    public void SetIcon(SpriteRenderer _icon, string _path)
-    {
-        if (null == _icon)
-        {
-            Debug.LogWarning($"{_icon} is Null");
-            return;
-        }
+    //public void SetIcon(SpriteRenderer _icon, string _path)
+    //{
+    //    if (null == _icon)
+    //    {
+    //        Debug.LogWarning($"{_icon} is Null");
+    //        return;
+    //    }
 
-        if (_path == null || _path.Length <= 0)
-        {
-            _icon.gameObject.SetActive(false);
-            return;
-        }
+    //    if (_path == null || _path.Length <= 0)
+    //    {
+    //        _icon.gameObject.SetActive(false);
+    //        return;
+    //    }
 
-        _icon.gameObject.SetActive(true);
-        SpriteAtlas spriteAtlas = null;
-        _icon.sprite = spriteAtlas.GetSprite(_path);
-        //_icon.sprite = SpritePool.GetSprite(_path);
-    }
+    //    _icon.gameObject.SetActive(true);
+    //    SpriteAtlas spriteAtlas = null;
+    //    _icon.sprite = spriteAtlas.GetSprite(_path);
+    //    //_icon.sprite = SpritePool.GetSprite(_path);
+    //}
 
     public void SetIcon(Image _icon, Sprite _sprite)
     {
@@ -328,41 +328,41 @@ public class UIBase : MonoBehaviour
     }
 
     //경로기반 생성
-    public T Create<T>(string path, Transform parent = null) where T : Component
-    {
-        GameObject _res = Resources.Load<GameObject>(path);
-        if (_res == null)
-            return null;
+    //public T Create<T>(string path, Transform parent = null) where T : Component
+    //{
+    //    GameObject _res = Resources.Load<GameObject>(path);
+    //    if (_res == null)
+    //        return null;
 
-        GameObject _obj = Instantiate<GameObject>(_res);
-        SetAttach(_obj.transform, parent);
-        T _comp = _obj.GetComponent<T>();
-        return _comp;
+    //    GameObject _obj = Instantiate<GameObject>(_res);
+    //    SetAttach(_obj.transform, parent);
+    //    T _comp = _obj.GetComponent<T>();
+    //    return _comp;
 
-    }
+    //}
 
-    //오브젝트를 받아서 생성
-    public T Create<T>(GameObject _res, Transform parent = null) where T : Component
-    {
-        if (_res == null)
-            return null;
+    ////오브젝트를 받아서 생성
+    //public T Create<T>(GameObject _res, Transform parent = null) where T : Component
+    //{
+    //    if (_res == null)
+    //        return null;
 
-        GameObject _obj = Instantiate<GameObject>(_res);
-        SetAttach(_obj.transform, parent);
-        T _comp = _obj.GetComponent<T>();
-        return _comp;
+    //    GameObject _obj = Instantiate<GameObject>(_res);
+    //    SetAttach(_obj.transform, parent);
+    //    T _comp = _obj.GetComponent<T>();
+    //    return _comp;
 
-    }
+    //}
 
-    //위치 설정
-    public void SetAttach(Transform _self, Transform _parent)
-    {
-        if (null == _parent)
-            return;
+    ////위치 설정
+    //public void SetAttach(Transform _self, Transform _parent)
+    //{
+    //    if (null == _parent)
+    //        return;
 
-        _self.transform.SetParent(_parent);
-        _self.transform.localPosition = Vector3.zero;
-        _self.transform.localRotation = Quaternion.identity;
-        _self.transform.localScale = Vector3.one;
-    }
+    //    _self.transform.SetParent(_parent);
+    //    _self.transform.localPosition = Vector3.zero;
+    //    _self.transform.localRotation = Quaternion.identity;
+    //    _self.transform.localScale = Vector3.one;
+    //}
 }

@@ -6,12 +6,11 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class AddressableUIManager : MonoSingleton<AddressableUIManager>
 {
     private Dictionary<string, GameObject> cachedUIs = new Dictionary<string, GameObject>();
-
-    // Add: Dictionary to track instantiated UI instances
     private Dictionary<string, GameObject> uiInstances = new Dictionary<string, GameObject>();
 
     private void Awake()
     {
+        //나중에 타입이 추가되면?
         LoadPreloadUIKeysByLabel("UI");
     }
 
@@ -28,13 +27,9 @@ public class AddressableUIManager : MonoSingleton<AddressableUIManager>
                     Addressables.LoadAssetAsync<GameObject>(uiKey).Completed += assetHandle =>
                     {
                         if (assetHandle.Status == AsyncOperationStatus.Succeeded)
-                        {
                             cachedUIs[uiKey] = assetHandle.Result;
-                        }
                         else
-                        {
                             Debug.LogError($"Failed to load UI asset for key: {uiKey}");
-                        }
                     };
                 }
             }
@@ -54,10 +49,8 @@ public class AddressableUIManager : MonoSingleton<AddressableUIManager>
             return;
         }
 
-        // Check if an instance already exists and is parented to the manager (hidden)
         if (uiInstances.TryGetValue(uiKey, out GameObject uiInstance) && uiInstance != null)
         {
-            // Reparent to canvas and activate
             uiInstance.transform.SetParent(canvas.transform, false);
             uiInstance.SetActive(true);
             uiInstance.GetComponent<UIPopup>()?.Open();
@@ -66,7 +59,6 @@ public class AddressableUIManager : MonoSingleton<AddressableUIManager>
 
         if (cachedUIs.TryGetValue(uiKey, out GameObject uiPrefab))
         {
-            // Instantiate, parent to canvas, and track instance
             GameObject newInstance = Instantiate(uiPrefab, canvas.transform, false);
             uiInstances[uiKey] = newInstance;
             newInstance.SetActive(true);
@@ -92,13 +84,14 @@ public class AddressableUIManager : MonoSingleton<AddressableUIManager>
         }
     }
 
-    // HideUI now takes a key, not an instance
+    
     public void HideUI(string uiKey)
     {
         if (uiInstances.TryGetValue(uiKey, out GameObject uiInstance) && uiInstance != null)
         {
             // Reparent to manager and deactivate
             uiInstance.transform.SetParent(this.transform, false);
+            uiInstance.GetComponent<UIPopup>()?.Close();
             uiInstance.SetActive(false);
         }
     }

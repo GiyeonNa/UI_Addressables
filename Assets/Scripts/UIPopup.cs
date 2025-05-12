@@ -39,10 +39,11 @@ public class UIPopup : UIBase
         base.Open();
 
         transform.localScale = Vector3.one;
-
         m_isClose = false;
+
         if (m_isSortLast)
             SetSortLast();
+
         SetStretch();
     }
 
